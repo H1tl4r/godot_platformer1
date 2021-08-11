@@ -1,16 +1,10 @@
 extends Area2D
 
+var collected = false
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_coin_body_entered(body):
+	if not collected:
+		hide()
+		$powerUp5.play()
+		get_tree().get_current_scene().get_node("HUD").inc_score()
+		collected = true
